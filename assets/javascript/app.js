@@ -151,6 +151,7 @@ $(document).ready(function() {
         click: function () { 
         	qnum = 0;
         	$('#timer').show()
+        	count=10
         	counter=setInterval(timer, 1000);
 			$('#question').html(qArr[qnum].q)
 			list(qArr,qnum);
@@ -162,7 +163,7 @@ $(document).ready(function() {
 	} 
 
 		else {
-			myVar = setTimeout(nextQuestion, 1000)
+			myVar = setTimeout(nextQuestion, 2000)
 		}
 	}
 
@@ -178,6 +179,7 @@ $(document).ready(function() {
 
 	//On click start intializes game
 	$('#start').on('click', function() {
+		$('#timer').html(count);
 		counter=setInterval(timer, 1000);	
 		$('#start').hide();
 		$('#question').html(qArr[qnum].q)
@@ -193,6 +195,8 @@ $(document).ready(function() {
 			$('#choices').empty();
 			$('#question').html('CORRECT: THE CORRECT ANSWER IS ' +qArr[qnum].a)
 			$('#timer').hide();
+			count = 10
+			$('#timer').html(count);
 			clearInterval(counter);
 			score.correct++
 			qnum++
@@ -203,6 +207,8 @@ $(document).ready(function() {
 			$('#choices').empty();
 			$('#question').html('WRONG!: THE CORRECT ANSWER IS ' +qArr[qnum].a)
 			$('#timer').hide();
+			count = 10
+			$('#timer').html(count);
 			clearInterval(counter);
 			qnum++
 			score.inccorect++
