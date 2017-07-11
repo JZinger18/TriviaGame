@@ -55,7 +55,23 @@ $(document).ready(function() {
 	var score = {
 		correct:0,
 		inccorect:0,
-		unanswered:0
+		unanswered:0,
+		// save initial values
+		  init: function() {
+		      var origValues = {};
+		      for (var prop in this) {
+		          if (this.hasOwnProperty(prop) && prop != "origValues") {
+		              origValues[prop] = this[prop];
+		          }
+		      }
+		      this.origValues = origValues;
+		  },
+		  // restore initial values
+		  reset: function() {
+		      for (var prop in this.origValues) {
+		          this[prop] = this.origValues[prop];
+		      }
+		  }
 	}
 
 	//variable that holds how much time per each question
@@ -148,7 +164,19 @@ $(document).ready(function() {
 		$('#question').append("<div>Correct: "+score.correct+"</div>");
 		$('#question').append("<div>Inccorect: "+score.inccorect+"</div>");
 		$('#question').append("<div>Unanswered: "+score.unanswered+"</div>");
-		$()
+		$('#question').append($('<button/>', {
+        text: 'Reset',
+        class: 'btn btn-primary',
+        click: function () { 
+        	qnum = 0;
+        	counter=setInterval(timer, 1000);	
+			$('#question').html(qArr[qnum].q)
+			list(qArr,qnum);
+
+        }
+    }));
+
+
 
 
 	} else{
