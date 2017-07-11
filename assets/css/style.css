@@ -1,0 +1,18 @@
+body {
+    background-image: url('../images/x.jpg');
+    /*background-color: silver;*/
+    color:black;
+}
+
+h1 {
+	color:white;
+}
+
+
+#timer {
+	color:white;
+}
+
+#question {
+	color:white;
+}
