@@ -74,6 +74,8 @@ $(document).ready(function() {
 		  }
 	}
 
+	score.init()
+
 	//variable that holds how much time per each question
 	var count=10;
 
@@ -101,28 +103,6 @@ $(document).ready(function() {
    		// do something with obj[key]
    		qArr.push(question[key])
 	});
-	console.log(qArr);
-
-
-// 	function countdown() {
-//     // starts countdown
-//     if (count == 0) {
-//         // time is up
-//     } else {
-//         count--;
-//         t = setTimeout("countdown()", 1000);
-//     }
-// };
-// function cdpause() {
-//     // pauses countdown
-//     clearTimeout(t);
-// };
-// function cdreset() {
-//     // resets countdown
-//     cdpause();
-//     count = CCOUNT;
-//     cddisplay();
-// };
 
 		//timer function thats runs every second
 	function timer() {
@@ -156,6 +136,7 @@ $(document).ready(function() {
 		}
 	}
 
+
 	function myFunction() {
 		if(qnum == qArr.length) {
 		$('#choices').empty();
@@ -169,29 +150,29 @@ $(document).ready(function() {
         class: 'btn btn-primary',
         click: function () { 
         	qnum = 0;
-        	counter=setInterval(timer, 1000);	
+        	$('#timer').show()
+        	counter=setInterval(timer, 1000);
 			$('#question').html(qArr[qnum].q)
 			list(qArr,qnum);
+			score.reset()
 
         }
     }));
 
+	} 
 
-
-
-	} else{
-		myVar = setTimeout(nextQuestion, 1000)
+		else {
+			myVar = setTimeout(nextQuestion, 1000)
+		}
 	}
-	}
 
-function nextQuestion() {
-	$('#timer').show()
-	$('#question').html(qArr[qnum].q)
-	count = 10
-	counter = setInterval(timer,1000)
-	list(qArr,qnum);
-
-
+	//used to iterate to the next question
+	function nextQuestion() {
+		$('#timer').show()
+		$('#question').html(qArr[qnum].q)
+		count = 10
+		counter = setInterval(timer,1000)
+		list(qArr,qnum);
 }
 
 
@@ -203,6 +184,7 @@ function nextQuestion() {
 		list(qArr,qnum);
 
 	})
+
 
 	//on click function for user choice
 	$(document).on('click','.ui',function() {
@@ -229,14 +211,6 @@ function nextQuestion() {
 		}
 	})
 
-
-
-
-
-
-
-
-// on restart do not reload page, reset gamee
 
 
 });
